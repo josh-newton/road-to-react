@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './index.scss';
 
-const Button = ({ onClick, className = '', children }) => {
+const Button = ({ onClick, className, children }) => {
   return (
     <button
       onClick={onClick}
@@ -11,6 +12,10 @@ const Button = ({ onClick, className = '', children }) => {
       {children}
     </button>
   );
+};
+
+Button.defaultProps = {
+  className: '',
 };
 
 export default Button;
