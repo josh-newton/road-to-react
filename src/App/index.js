@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import logo from './logo.svg';
-import './App.scss';
+import './index.scss';
 
+// Components
+import Button from '../Button';
+import Table from '../Table';
+import Search from '../Search';
+
+// Constants
 const DEFAULT_QUERY = 'redux';
 const DEFAULT_HPP = '100';
-
 const PATH_BASE =     'https://hn.algolia.com/api/v1';
 const PATH_SEARCH =   '/search';
 const PARAM_SEARCH =  'query=';
@@ -123,59 +127,5 @@ class App extends Component {
     );
   }
 }
-
-const Search = ({ value, onChange, onSubmit, children }) => {
-  return(
-    <form className="search" onSubmit={onSubmit}>
-      <label>
-       <span>{children}</span>
-        <input
-          type="text"
-          value={value}
-          onChange={onChange}
-        />
-      </label>
-      <button type="submit">
-        {children}
-      </button>
-    </form>
-  );
-};
-
-const Table = ({ list, onDismiss }) => {
-  return (
-    <div className="table">
-      {list.map( item =>
-        <div key={item.objectID} className="list-item" className="table-row">
-          <span className="title">
-            <a href={item.url}>{item.title}</a>
-          </span>
-          <span className="author">{item.author}</span>
-          <span className="comments">{item.num_comments}</span>
-          <span className="points">{item.points}</span>
-          <span className="dismiss">
-            <Button
-              onClick={() => onDismiss(item.objectID)}
-              className="button-inline"
-            >
-              Dismiss
-            </Button>
-          </span>
-        </div>
-      )}
-    </div>
-  );
-};
-
-const Button = ({ onClick, className = '', children }) => {
-  return (
-    <button
-      onClick={onClick}
-      className={className}
-      >
-      {children}
-    </button>
-  );
-};
 
 export default App;
