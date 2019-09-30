@@ -27,17 +27,17 @@
   text-overflow: ellipsis;
   padding: 0 5px;
 }
-.table-row > span {
+.table span {
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0 5px;
 }
-.table-row > span.title{
+.table span.title{
   width: 40%;
 }
-.table-row > span.author{
+.table span.author{
   width: 30%;
 }
-.table-row > span.comments, .table-row > span.points, .table-row > span.dismiss{
+.table span.comments, .table span.points, .table span.dismiss{
   width: 10%;
 }

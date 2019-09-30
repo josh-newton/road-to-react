@@ -5,7 +5,56 @@ exports[`Table has a valid snapshot 1`] = `
   className="table"
 >
   <div
-    className="table-row"
+    className="table-header"
+  >
+    <span
+      className="title"
+    >
+      <button
+        className="button-inline button-active"
+        onClick={[Function]}
+      >
+        Title
+      </button>
+    </span>
+    <span
+      className="author"
+    >
+      <button
+        className="button-inline"
+        onClick={[Function]}
+      >
+        Author
+      </button>
+    </span>
+    <span
+      className="comments"
+    >
+      <button
+        className="button-inline"
+        onClick={[Function]}
+      >
+        Comments
+      </button>
+    </span>
+    <span
+      className="points"
+    >
+      <button
+        className="button-inline"
+        onClick={[Function]}
+      >
+        Points
+      </button>
+    </span>
+    <span
+      className="dismiss"
+    >
+      Archive
+    </span>
+  </div>
+  <div
+    className="list-item table-row"
   >
     <span
       className="title"
@@ -41,7 +90,7 @@ exports[`Table has a valid snapshot 1`] = `
     </span>
   </div>
   <div
-    className="table-row"
+    className="list-item table-row"
   >
     <span
       className="title"

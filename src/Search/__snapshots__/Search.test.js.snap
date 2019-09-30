@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App has a valid snapshot 1`] = `"<App />"`;
-
 exports[`Search has a valid snapshot 1`] = `
 <form
   className="search"
