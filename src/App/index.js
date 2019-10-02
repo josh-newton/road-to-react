@@ -28,6 +28,19 @@ const withLoading = (Component) => ({ isLoading, ...rest }) => {
 
 const ButtonWithLoading = withLoading(Button);
 
+const updateSearchTopStoriesState = (hits, page) => (prevState) => {
+  const { searchKey, results } = prevState;
+  const oldHits = results && results[searchKey] ? results[searchKey].hits : [];
+  const updatedHits = [...oldHits, ...hits];
+  return {
+    results: {
+     ...results,
+     [searchKey]: { hits: updatedHits, page }
+    },
+    isLoading: false
+  };
+};
+
 class App extends Component {
 
   constructor(props) {
@@ -38,9 +51,7 @@ class App extends Component {
       searchKey: '',
       searchTerm: DEFAULT_QUERY,
       error: null,
-      isLoading: false,
-      sortKey: 'NONE',
-      isSortReverse: false
+      isLoading: false
     };
 
     this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
@@ -49,7 +60,6 @@ class App extends Component {
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
-    this.onSort = this.onSort.bind(this);
 
   }
 
@@ -72,11 +82,7 @@ class App extends Component {
 
   setSearchTopStories(result) {
     const { hits, page } = result;
-    const { searchKey, results } = this.state;
-    const oldHits = results && results[searchKey] ? results[searchKey].hits : [];
-
-    const updatedHits = [...oldHits, ...hits];
-    this.setState({ results: { ...results, [searchKey]: { hits: updatedHits, page } }, isLoading: false });
+    this.setState(updateSearchTopStoriesState(hits, page));
   }
 
   onSearchChange(event) {
@@ -116,9 +122,7 @@ class App extends Component {
       results,
       searchKey,
       error,
-      isLoading,
-      sortKey,
-      isSortReverse
+      isLoading
     } = this.state;
     const page = (results && results[searchKey] && results[searchKey].page) || 0;
     const list = (results && results[searchKey] && results[searchKey].hits) || [];
@@ -141,9 +145,6 @@ class App extends Component {
           :
           <Table
             list={list}
-            sortKey={sortKey}
-            onSort={this.onSort}
-            isSortReverse={isSortReverse}
             onDismiss={this.onDismiss}
           />
         }
